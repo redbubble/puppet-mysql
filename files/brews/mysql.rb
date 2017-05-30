@@ -42,10 +42,6 @@ class Mysql < Formula
       "COMMAND /usr/bin/libtool -static -o ${TARGET_LOCATION}",
       "COMMAND libtool -static -o ${TARGET_LOCATION}"
 
-    # Build without compiler or CPU specific optimization flags to facilitate
-    # compilation of gems and other software that queries `mysql-config`.
-    ENV.minimal_optimization
-
     # -DINSTALL_* are relative to prefix
     args = %W[
       .
@@ -65,6 +61,8 @@ class Mysql < Formula
       -DSYSCONFDIR=#{etc}
       -DCOMPILATION_COMMENT=Homebrew
       -DWITH_EDITLINE=system
+      -DDOWNLOAD_BOOST=1
+      -DWITH_BOOST=${HOME}/my_boost
     ]
 
     # To enable unit testing at build, we need to download the unit testing suite
