@@ -98,25 +98,27 @@ class Mysql < Formula
     system "cmake", *args
     system "make"
     system "make", "install"
-
+puts "HERE 1"
     # Don't create databases inside of the prefix!
     # See: https://github.com/Homebrew/homebrew/issues/4975
     rm_rf prefix/"data"
-
+puts "HERE 2"
     # Link the setup script into bin
     bin.install_symlink prefix/"scripts/mysql_install_db"
-
+puts "HERE 3"
     # Fix up the control script and link into bin
     inreplace "#{prefix}/support-files/mysql.server" do |s|
       s.gsub!(/^(PATH=".*)(")/, "\\1:#{HOMEBREW_PREFIX}/bin\\2")
       # pidof can be replaced with pgrep from proctools on Mountain Lion
       s.gsub!(/pidof/, "pgrep") if MacOS.version >= :mountain_lion
     end
-
+puts "HERE 4"
     bin.install_symlink prefix/"support-files/mysql.server"
-
+puts "HERE 5"
     libexec.install bin/"mysqlaccess"
+puts "HERE 6"
     libexec.install bin/"mysqlaccess.conf"
+puts "HERE 7"
   end
 
   def post_install
