@@ -97,6 +97,7 @@ class Mysql < Formula
 
     system "cmake", *args
     system "make"
+puts "HERE 0"
     system "make", "install"
 puts "HERE 1"
     # Don't create databases inside of the prefix!
