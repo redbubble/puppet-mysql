@@ -62,7 +62,6 @@ class Mysql < Formula
       -DCOMPILATION_COMMENT=Homebrew
       -DWITH_EDITLINE=system
       -DDOWNLOAD_BOOST=1
-      -DWITH_BOOST=#{ENV['HOME']}/boost
     ]
 
     # To enable unit testing at build, we need to download the unit testing suite
